@@ -1,0 +1,279 @@
+\documentclass[a4paper]{scrartcl}
+
+\usepackage[siunitx,europeanresistors]{circuitikz}
+
+\pagestyle{empty}
+
+\begin{document}
+\begin{circuitikz}
+
+\draw
+(0,0)
+	node[ground] {}
+	to [short, -*] ++(1.5,0)
+		node[anchor=center] (ground1) {} ++(0,0)
+	to [C=100<\nano\farad>] ++(0,-3)
+		node[anchor=center] (vcc1) {} ++(0,0)
+	to [short, *-o] ++(-1,0)
+		node[left] {\SI{3.3}{\volt}}
+;
+
+\draw
+(ground1)
+	to [short, -*] ++(3,0)
+	to [short] ++(0,-0.5)
+		node[anchor=center] (avrgnd) {}
+;
+
+
+\draw
+(avrgnd)
+		node[anchor=north] () {GND}
+	|- ++(-1,0)
+	|- ++(0,-2)
+	|- ++(1,0)
+		node[anchor=center] (avrpb0) {}
+		node[anchor=south] () {PB0}
+	|- ++(1,0)
+		node[anchor=center] (avrpb1) {}
+		node[anchor=south] () {PB1}
+	|- ++(1,0)
+		node[anchor=center] (avrpb2) {}
+		node[anchor=south] () {PB2}
+	|- ++(1,0)
+		node[anchor=center] (avrpb3) {}
+		node[anchor=south] () {PB3}
+	|- ++(1,0)
+		node[anchor=center] (avrpb4) {}
+		node[anchor=south] () {PB4}
+	|- ++(1,0)
+		node[anchor=center] (avrpb5) {}
+		node[anchor=south] () {PB5}
+	|- ++(1,0)
+		node[anchor=center] (avrpb6) {}
+		node[anchor=south] () {PB6}
+	|- ++(1,0)
+		node[anchor=center] (avrvcc) {}
+		node[anchor=south] () {VCC}
+	|- ++(1,0)
+	|- ++(0,2)
+	|- ++(-1,0)
+		node[anchor=center] (avrreset) {}
+		node[anchor=north] () {RESET}
+	|- (avrgnd)
+;
+
+\draw
+(avrpb3) ++(0.5,1)
+	node[anchor=center] () {ATtiny2313}
+;
+
+\draw
+(avrvcc)
+	to [short, -*] ++(0,-0.5)
+		node[anchor=center] (vcc2) {}
+	to [short, -*] (vcc1)
+;
+
+\draw
+(vcc2)
+	to [short, -*] ++(2,0)
+	to [short, -*] ++(0,3)
+	to [short, -*] ++(-2,0)
+	to [short] (avrreset)
+;
+
+\draw
+(avrpb0)
+	to [short] ++(0,-2)
+		node[anchor=center] (uln1b) {}
+;
+
+\draw
+(avrpb1)
+	to [short] ++(0,-2)
+		node[anchor=center] (uln2b) {}
+;
+
+\draw
+(avrpb2)
+	to [short] ++(0,-2)
+		node[anchor=center] (uln3b) {}
+;
+
+\draw
+(avrpb3)
+	to [short] ++(0,-2)
+		node[anchor=center] (uln4b) {}
+;
+
+\draw
+(avrpb4)
+	to [short] ++(0,-2)
+		node[anchor=center] (uln5b) {}
+;
+
+\draw
+(avrpb5)
+	to [short] ++(0,-2)
+		node[anchor=center] (uln6b) {}
+;
+
+\draw
+(avrpb6)
+	to [short] ++(0,-2)
+		node[anchor=center] (uln7b) {}
+;
+
+\draw
+(uln1b)
+		node[anchor=north] {1B}
+	-| (uln2b)	
+		node[anchor=north] {2B}
+	-| (uln3b)	
+		node[anchor=north] {3B}
+	-| (uln4b)	
+		node[anchor=north] {4B}
+	-| (uln5b)	
+		node[anchor=north] {5B}
+	-| (uln6b)	
+		node[anchor=north] {6B}
+	-| (uln7b)	
+		node[anchor=north] {7B}
+	-| ++(1,0)
+		node[anchor=center] (ulne) {}
+		node[anchor=north] {E}
+	-| ++(1,0)
+	|- ++(0,-2)
+	|- ++(-2,0)
+		node[anchor=center] (uln7c) {}
+		node[anchor=south] {7C}
+	|- ++(-1,0)
+		node[anchor=center] (uln6c) {}
+		node[anchor=south] {6C}
+	|- ++(-1,0)
+		node[anchor=center] (uln5c) {}
+		node[anchor=south] {5C}
+	|- ++(-1,0)
+		node[anchor=center] (uln4c) {}
+		node[anchor=south] {4C}
+	|- ++(-1,0)
+		node[anchor=center] (uln3c) {}
+		node[anchor=south] {3C}
+	|- ++(-1,0)
+		node[anchor=center] (uln2c) {}
+		node[anchor=south] {2C}
+	|- ++(-1,0)
+		node[anchor=center] (uln1c) {}
+		node[anchor=south] {1C}
+	|- ++(-1,0)
+	|- ++(0,2)
+	-| (uln1b)
+	
+;
+
+\draw
+(uln4c) ++(0.5,1)
+		node[anchor=center] () {ULN2003A}
+;
+
+\draw
+(ulne)
+	to [short, -*] ++(0,1)
+	to [short] ++(2,0)
+	to node[ground] {} ++(0,0)
+
+;
+
+\draw
+(uln1c)
+	to [short] ++(0,-1)
+		node[anchor=center] (ledwire1) {}
+	to [leDo] ++(0,-1)
+	to [R] ++(0,-2)
+	to [short, -*] ++(0,-1)
+	to [short] ++(1,0)
+;
+
+\draw
+(uln2c)
+	to [short] ++(0,-1)
+		node[anchor=center] (ledwire2) {}
+	to [leDo] ++(0,-1)
+	to [R] ++(0,-2)
+	to [short, -*] ++(0,-1)
+	to [short] ++(1,0)
+;
+
+\draw
+(uln3c)
+	to [short] ++(0,-1)
+		node[anchor=center] (ledwire3) {}
+	to [leDo] ++(0,-1)
+	to [R] ++(0,-2)
+	to [short, -*] ++(0,-1)
+	to [short] ++(1,0)
+;
+
+\draw
+(uln4c)
+	to [short] ++(0,-1)
+		node[anchor=center] (ledwire4) {}
+	to [leDo] ++(0,-1)
+	to [R] ++(0,-2)
+	to [short, -*] ++(0,-1)
+	to [short] ++(1,0)
+;
+
+\draw
+(uln5c)
+	to [short] ++(0,-1)
+		node[anchor=center] (ledwire5) {}
+	to [leDo] ++(0,-1)
+	to [R] ++(0,-2)
+	to [short, -*] ++(0,-1)
+	to [short] ++(1,0)
+;
+
+\draw
+(uln6c)
+	to [short] ++(0,-1)
+		node[anchor=center] (ledwire6) {}
+	to [leDo] ++(0,-1)
+	to [R] ++(0,-2)
+	to [short, -*] ++(0,-1)
+	to [short] ++(1,0)
+;
+
+\draw
+(uln7c)
+	to [short] ++(0,-1)
+		node[anchor=center] (ledwire7) {}
+	to [leDo] ++(0,-1)
+	to [R] ++(0,-2)
+	to [short, -*] ++(0,-1)
+	to node[ground] {} ++(0,0)
+;
+
+\draw [dashed]
+(ledwire1)
+	-| (ledwire2)
+	-| (ledwire3)
+	-| (ledwire4)
+	-| (ledwire5)
+	-| (ledwire6)
+	-| (ledwire7)
+	-| ++(0.5,0)
+	-| ++(0,-3)
+	-| ++(-7,0)
+	-| ++(0,3)
+	-| (ledwire1)
+;
+
+\draw [dashed]
+(ledwire1) ++(-1,-1.5)
+	node[anchor=center, rotate=90] {LED wires}
+;
+
+\end{circuitikz}
+\end{document}
