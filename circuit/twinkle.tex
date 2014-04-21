@@ -189,8 +189,10 @@
 (uln1c)
 	to [short] ++(0,-1)
 		node[anchor=center] (ledwire1) {}
-	to [leDo] ++(0,-1)
 	to [R] ++(0,-2)
+++(0,-1)
+	to [leDo] ++(0,1)
+++(0,-1)
 	to [short, -*] ++(0,-1)
 	to [short] ++(1,0)
 ;
@@ -199,9 +201,12 @@
 (uln2c)
 	to [short] ++(0,-1)
 		node[anchor=center] (ledwire2) {}
-	to [leDo] ++(0,-1)
 	to [R] ++(0,-2)
+++(0,-1)
+	to [leDo] ++(0,1)
+++(0,-1)
 	to [short, -*] ++(0,-1)
+		node[anchor=center] (vcc3) {}
 	to [short] ++(1,0)
 ;
 
@@ -209,8 +214,10 @@
 (uln3c)
 	to [short] ++(0,-1)
 		node[anchor=center] (ledwire3) {}
-	to [leDo] ++(0,-1)
 	to [R] ++(0,-2)
+++(0,-1)
+	to [leDo] ++(0,1)
+++(0,-1)
 	to [short, -*] ++(0,-1)
 	to [short] ++(1,0)
 ;
@@ -219,8 +226,10 @@
 (uln4c)
 	to [short] ++(0,-1)
 		node[anchor=center] (ledwire4) {}
-	to [leDo] ++(0,-1)
 	to [R] ++(0,-2)
+++(0,-1)
+	to [leDo] ++(0,1)
+++(0,-1)
 	to [short, -*] ++(0,-1)
 	to [short] ++(1,0)
 ;
@@ -229,8 +238,10 @@
 (uln5c)
 	to [short] ++(0,-1)
 		node[anchor=center] (ledwire5) {}
-	to [leDo] ++(0,-1)
 	to [R] ++(0,-2)
+++(0,-1)
+	to [leDo] ++(0,1)
+++(0,-1)
 	to [short, -*] ++(0,-1)
 	to [short] ++(1,0)
 ;
@@ -239,8 +250,10 @@
 (uln6c)
 	to [short] ++(0,-1)
 		node[anchor=center] (ledwire6) {}
-	to [leDo] ++(0,-1)
 	to [R] ++(0,-2)
+++(0,-1)
+	to [leDo] ++(0,1)
+++(0,-1)
 	to [short, -*] ++(0,-1)
 	to [short] ++(1,0)
 ;
@@ -249,10 +262,11 @@
 (uln7c)
 	to [short] ++(0,-1)
 		node[anchor=center] (ledwire7) {}
-	to [leDo] ++(0,-1)
 	to [R] ++(0,-2)
+++(0,-1)
+	to [leDo] ++(0,1)
+++(0,-1)
 	to [short, -*] ++(0,-1)
-	to node[ground] {} ++(0,0)
 ;
 
 \draw [dashed]
@@ -273,6 +287,12 @@
 \draw [dashed]
 (ledwire1) ++(-1,-1.5)
 	node[anchor=center, rotate=90] {LED wires}
+;
+
+\draw
+(vcc1)
+	to [short] ++(0,-8.5)
+	to [short] (vcc3)
 ;
 
 \end{circuitikz}
