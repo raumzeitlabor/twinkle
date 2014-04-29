@@ -18,7 +18,6 @@
 #define PWM_PORT	(PORTB)
 #define PWM_DDR		(DDRB)
 #define PWM_STEPS	(60)
-#define PWM_LEN		(256/PWM_STEPS)
 #define PWM_COUNTER	pwmcnt
 #define PWM_TMPPORT	pwmtmpport
 #include "softpwm.h"
@@ -32,6 +31,16 @@
 #define LED5	(1<<PB4)
 #define LED6	(1<<PB5)
 #define LED7	(1<<PB6)
+
+// jot 60 0 255 | xargs -I% python -c 'print int(round(255.0 * pow(%/255.0, 2.2)))'
+static uint8_t PWM_LEN[] = {
+	  0,   0,   0,   0,   1,   1,   2,   2,   3,   4,
+	  5,   6,   8,   9,  11,  13,  14,  16,  19,  21,
+	 23,  26,  29,  32,  35,  39,  42,  46,  49,  53,
+	 58,  62,  66,  71,  76,  81,  87,  91,  97, 103,
+	109, 114, 121, 127, 133, 140, 148, 154, 161, 170,
+	177, 184, 194, 201, 209, 219, 227, 236, 246, 255,
+};
 
 PWM_CREATE(0, LED1, 1,  0);
 PWM_CREATE(1, LED2, 1,  9);
@@ -64,7 +73,7 @@ ISR(TIMER0_COMPA_vect)
 		OCR0A = 0;
 	}
 
-	OCR0A += PWM_LEN;
+	OCR0A += PWM_LEN[pwmcnt];
 }
 
 int
