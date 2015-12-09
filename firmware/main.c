@@ -17,7 +17,7 @@
 
 #define PWM_PORT	(PORTB)
 #define PWM_DDR		(DDRB)
-#define PWM_STEPS	(60)
+#define PWM_STEPS	(70)
 #define PWM_COUNTER	pwmcnt
 #define PWM_TMPPORT	pwmtmpport
 #include "softpwm.h"
@@ -32,23 +32,24 @@
 #define LED6	(1<<PB5)
 #define LED7	(1<<PB6)
 
-// jot 60 0 255 | xargs -I% python -c 'print int(round(255.0 * pow(%/255.0, 2.2)))'
+// jot 70 0 255 | xargs -I% python -c 'print int(round(255.0 * pow(%/255.0, 2.2)))'
 static uint8_t PWM_LEN[] = {
-	  0,   0,   0,   0,   1,   1,   2,   2,   3,   4,
-	  5,   6,   8,   9,  11,  13,  14,  16,  19,  21,
-	 23,  26,  29,  32,  35,  39,  42,  46,  49,  53,
-	 58,  62,  66,  71,  76,  81,  87,  91,  97, 103,
-	109, 114, 121, 127, 133, 140, 148, 154, 161, 170,
-	177, 184, 194, 201, 209, 219, 227, 236, 246, 255,
+	  0,    0,    0,    0,    1,    1,    1,    2,    2,    3,
+	  4,    5,    5,    6,    8,    9,   10,   12,   13,   15,
+	 17,   19,   20,   23,   25,   27,   30,   33,   35,   38,
+	 41,   44,   47,   50,   54,   57,   61,   65,   68,   73,
+	 77,   82,   85,   90,   95,   99,  105,  110,  114,  120,
+	126,  130,  137,  143,  149,  154,  161,  168,  173,  181,
+	188,  194,  201,  209,  217,  223,  231,  240,  246,  255,
 };
 
-PWM_CREATE(0, LED1, 1,  0);
-PWM_CREATE(1, LED2, 1,  9);
-PWM_CREATE(2, LED3, 1, 19);
-PWM_CREATE(3, LED4, 1, 29);
-PWM_CREATE(4, LED5, 1, 39);
-PWM_CREATE(5, LED6, 1, 49);
-PWM_CREATE(6, LED7, 1, 59);
+PWM_CREATE(0, LED1, 1,  3);
+PWM_CREATE(1, LED2, 1, 15);
+PWM_CREATE(2, LED3, 1, 38);
+PWM_CREATE(3, LED4, 1, 73);
+PWM_CREATE(4, LED5, 1, 120);
+PWM_CREATE(5, LED6, 1, 181);
+PWM_CREATE(6, LED7, 1, 255);
 
 ISR(TIMER0_COMPA_vect)
 {
@@ -102,7 +103,7 @@ main(void)
 		PWM_UPDATE(5);
 		PWM_UPDATE(6);
 
-		_delay_ms(100);
+		_delay_ms(50);
 	}
 
 	/* NOTREACHED */
